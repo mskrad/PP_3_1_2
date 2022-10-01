@@ -10,20 +10,27 @@ import java.util.List;
 
 @Service
 @Transactional
-public class RoleServiceImpl implements RoleService {
+public class RoleService {
 
-    @Autowired
     private RoleRepository roleRepository;
-
-    public void createRole(Role role) {roleRepository.save(role);}
-
-    public void deleteRole(Long id) {roleRepository.deleteById(id);}
-
-    public Role getRoleByName(String name) {
-        return roleRepository.findByName(name);
+    @Autowired
+    public void setRoleRepository(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;;
     }
+
+    public void addRole(Role role) {
+        roleRepository.save(role);
+    }
+
+    public void updateRole(Role role) {
+        roleRepository.saveAndFlush(role);
+    }
+
+    public void removeRoleById(long id) { roleRepository.deleteById((long) id); }
 
     public List<Role> getAllRoles() {
-        return roleRepository.findAll();
+        return roleRepository.findAllByRole();
     }
+
+    public Role getRoleByName(String name) { return roleRepository.findByRole(name); }
 }

@@ -10,7 +10,7 @@
 <div>
     <table border="1">
         <tr>
-            <th>First name</th>
+            <th>User name</th>
             <th>Last name</th>
             <th>Email</th>
             <th>User page</th>
@@ -18,12 +18,14 @@
             <th>Delete</th>
         </tr>
         <tr th:each ="user : ${users}">
-            <td th:text="${user.firstName}">firstname</td>
+            <td th:text="${user.username}">firstname</td>
             <td th:text="${user.lastName}">lastname</td>
             <td th:text="${user.email}">email</td>
-            <td><a th:href = "@{/users/{id}(id=${user.getId()})}" th:text="More">id</a></td>
-            <td><a th:href = "@{/users/edit/{id}(id=${user.getId()})}" th:text="Edit">id</a></td>
-            <td><form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+            <td th:text="${user.password}">password</td>
+
+            <td><a th:href = "@{/user/{id}(id=${user.getId()})}" th:text="More">id</a></td>
+            <td><a th:href = "@{/admin/edit/{id}(id=${user.getId()})}" th:text="Edit">id</a></td>
+            <td><form th:method="DELETE" th:action="@{/admin/remove/{id}(id=${user.getId()})}">
                 <input type = "submit" value="Delete"/>
             </form>
             </td>
@@ -31,7 +33,7 @@
     </table>
 </div>
 
-<a href="/users/adduser">Add new user</a>
+<a href="/admin/adduser">Add new user</a>
 
 </body>
 </html>
