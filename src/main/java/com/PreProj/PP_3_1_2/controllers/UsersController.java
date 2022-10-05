@@ -38,15 +38,15 @@ public class UsersController {
 
     @GetMapping(value = "/admin")
     public String listUsers(Model model) {
-        model.addAttribute("allUsers", userService.getAllUsers());
-        return "all-user";
+        model.addAttribute("users", userService.getAllUsers());
+        return "all-users";
     }
 
     @GetMapping(value = "/admin/new")
     public String newUser(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("users", new User());
         model.addAttribute("roles", roleService.getAllRoles());
-        return "userpage";
+        return "add";
     }
 
     @PostMapping(value = "/admin/add-user")
@@ -62,7 +62,7 @@ public class UsersController {
 
     @GetMapping(value = "/admin/edit/{id}")
     public String editUserForm(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("users", userService.getUserById(id));
         model.addAttribute("roles", roleService.getAllRoles());
         return "edit";
     }

@@ -9,15 +9,13 @@
 <body>
 <p>Username</p>
 <p th:text="${user.getUsername()}">VALUE</p>
+<p>First name</p>
+<p th:text="${user.getFirstname()}">VALUE</p>
 <p>Last name</p>
-<p th:text="${user.getLastName()}">VALUE</p>
+<p th:text="${user.getLastname()}">VALUE</p>
 <p>e-mail</p>
-<p th:text="${user.getId()}">VALUE</p>
+<p th:text="${user.getEmail()}">VALUE</p>
 
-<a th:href = "@{/users/edit/{id}(id = ${users.getId()})}">Edit</a>
-
-<form th:method = "DELETE" th:action="@{/admin/remove/{id}(id=${users.getId()})}">
-    <input type = "submit" value="Delete">
 </form>
 </body>
 </html>

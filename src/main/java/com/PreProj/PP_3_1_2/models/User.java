@@ -15,7 +15,11 @@ public class User implements UserDetails {
     private long id;
     @Column(name = "username")
     private String username;
-    @Column(name = "lastname")
+
+    @Column(name = "first_name")
+    private String firstname;
+
+    @Column(name = "last_name")
     private String lastname;
     @Column(name = "email")
     private String email;
@@ -24,8 +28,9 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Role> roles;
 
-    public User(String username, String lastname, String email, String password, Set<Role> roles) {
+    public User(String username, String firstname, String lastname, String email, String password, Set<Role> roles) {
         this.username = username;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
@@ -40,6 +45,14 @@ public class User implements UserDetails {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public long getId() {
