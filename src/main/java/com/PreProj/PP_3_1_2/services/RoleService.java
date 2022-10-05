@@ -32,5 +32,9 @@ public class RoleService {
         return roleRepository.findAllByRole();
     }
 
+<<<<<<< HEAD
     public Role getRoleByName(String name) { return roleRepository.findByRole(name); }
+=======
+    public Role getRoleByName(String name) { return roleRepository.findByName(name); }
+>>>>>>> PP_3_1_3
 }

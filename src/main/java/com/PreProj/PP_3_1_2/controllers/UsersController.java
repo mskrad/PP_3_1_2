@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.HashSet;
 import java.util.Set;
+<<<<<<< HEAD
 
 @Controller
 public class UsersController implements WebMvcConfigurer {
@@ -27,6 +28,23 @@ public class UsersController implements WebMvcConfigurer {
         this.roleService = roleService;
     }
 
+=======
+
+@Controller
+public class UsersController {
+
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private RoleService roleService;
+
+//    @Autowired
+//    public UsersController(@Qualifier("userService") UserService userService, RoleService roleService) {
+//        this.userService = userService;
+//        this.roleService = roleService;
+//    }
+
+>>>>>>> PP_3_1_3
     @GetMapping(value = "/user")
     public String userInfo(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("user", user);

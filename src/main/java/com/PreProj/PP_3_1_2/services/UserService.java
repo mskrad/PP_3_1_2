@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+<<<<<<< HEAD
 @Transactional
 public class UserService {
     private UserRepository userRepository;
@@ -22,6 +23,15 @@ public class UserService {
     public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
+=======
+public class UserService implements UserDetailsService {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+>>>>>>> PP_3_1_3
     public void addUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -40,11 +50,29 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+<<<<<<< HEAD
     public User getUserById(long id) { return userRepository.findById(id); }
 
     public List<User> getAllUsers() { return userRepository.findAllBy(); }
 
     public User getUserByName(String username) {
         return userRepository.findByUsername(username);
+=======
+    public User getUserById(long id) { return userRepository.findById(id).get(); }
+
+    public List<User> getAllUsers() { return userRepository.findAll(); }
+
+    public User getUserByName(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUserByName(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found " + username);
+        }
+        return user;
+>>>>>>> PP_3_1_3
     }
 }

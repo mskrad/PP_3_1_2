@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+<<<<<<< HEAD
     <title>Spring Security Login</title>
 </head>
 <body>
@@ -17,6 +18,17 @@
 </div>
 <form method="POST" action="/login">
     <div><label> User Name : <input type="text" name="j_username"/> </label></div>
+=======
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <title>Spring Security Login</title>
+</head>
+<body>
+
+<form method="POST" action="/login">
+    <div><label> E-mail address : <input type="text" name="j_username"/> </label></div>
+>>>>>>> PP_3_1_3
     <div><label> Password: <input type="password" name="j_password"/> </label></div>
     <div><input type="submit" value="Sign In"/></div>
 </form>
