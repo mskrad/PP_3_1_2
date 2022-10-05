@@ -16,16 +16,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Controller
-public class UsersController implements WebMvcConfigurer {
-
-    private final UserService userService;
-    private final RoleService roleService;
+public class UsersController {
 
     @Autowired
-    public UsersController(@Qualifier("userService") UserService userService, RoleService roleService) {
-        this.userService = userService;
-        this.roleService = roleService;
-    }
+    private UserService userService;
+    @Autowired
+    private RoleService roleService;
+
+//    @Autowired
+//    public UsersController(@Qualifier("userService") UserService userService, RoleService roleService) {
+//        this.userService = userService;
+//        this.roleService = roleService;
+//    }
 
     @GetMapping(value = "/user")
     public String userInfo(@AuthenticationPrincipal User user, Model model){
