@@ -23,12 +23,6 @@ public class UsersController {
     @Autowired
     private RoleService roleService;
 
-//    @Autowired
-//    public UsersController(@Qualifier("userService") UserService userService, RoleService roleService) {
-//        this.userService = userService;
-//        this.roleService = roleService;
-//    }
-
     @GetMapping(value = "/user")
     public String userInfo(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("user", user);
@@ -37,16 +31,11 @@ public class UsersController {
     }
 
     @GetMapping(value = "/admin")
-    public String listUsers(Model model) {
+    public String listUsers(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "all-users";
-    }
-
-    @GetMapping(value = "/admin/new")
-    public String newUser(Model model) {
-        model.addAttribute("users", new User());
+        model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAllRoles());
-        return "add";
+        return "all-users";
     }
 
     @PostMapping(value = "/admin/add-user")
@@ -60,14 +49,7 @@ public class UsersController {
         return "redirect:/admin";
     }
 
-    @GetMapping(value = "/admin/edit/{id}")
-    public String editUserForm(@PathVariable("id") long id, Model model) {
-        model.addAttribute("users", userService.getUserById(id));
-        model.addAttribute("roles", roleService.getAllRoles());
-        return "edit";
-    }
-
-    @PatchMapping(value = "/admin/update/{id}")
+    @PatchMapping(value = "/edit/{id}")
     public String editUser(@ModelAttribute User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
         Set<Role> roleSet = new HashSet<>();
         for (String roles : checkBoxRoles) {
@@ -78,7 +60,7 @@ public class UsersController {
         return "redirect:/admin";
     }
 
-    @DeleteMapping(value = "/admin/remove/{id}")
+    @PostMapping(value = "/admin/remove/{id}")
     public String removeUser(@PathVariable("id") long id) {
         userService.removeUserById(id);
         return "redirect:/admin";

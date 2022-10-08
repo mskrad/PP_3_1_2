@@ -22,6 +22,11 @@ public class Role  implements GrantedAuthority {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return this.name.contains("ADMIN") ? "ADMIN" : "USER";
+    }
+
     public Long getId() {
         return id;
     }
