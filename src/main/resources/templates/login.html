@@ -29,7 +29,17 @@
 </head>
 <body>
 <div class="login-form">
-
+    <div th:if="${param.error}">
+        Invalid username and password.
+        <p th:text="${param.error}">VALUE</p>
+    </div>
+    <div class="error" th:if="${param.error}"
+         th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+        Reason: <span th:text="${errorMsg}">Wrong input!</span>
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
     <form method="POST" action="/login">
         <h2 class="text-center">Sign in</h2>
         <div class="form-group">
@@ -42,18 +52,6 @@
             <button type="submit" class="btn btn-primary btn-block">Sign in</button>
         </div>
     </form>
-
-    <div th:if="${param.error}">
-        Invalid username and password.
-        <p th:text="${param.error}">VALUE</p>
-    </div>
-    <div class="error" th:if="${param.error}"
-         th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-        Reason: <span th:text="${errorMsg}">Wrong input!</span>
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
 </div>
 </body>
 </html>

@@ -18,7 +18,6 @@ public class User implements UserDetails {
 
     @Column(name = "first_name")
     private String firstname;
-
     @Column(name = "last_name")
     private String lastname;
     @Column(name = "email")
@@ -39,20 +38,20 @@ public class User implements UserDetails {
 
     public User() { }
 
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getFirstname() {
         return firstname;
     }
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public long getId() {
@@ -114,6 +113,10 @@ public class User implements UserDetails {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public String getStringRoles() {
+        return roles.toString().replace("[", "").replace("]", "");
     }
 
     public void setRoles(Set<Role> roles) {
