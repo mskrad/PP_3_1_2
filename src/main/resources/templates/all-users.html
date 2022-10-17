@@ -3,7 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../static/allusers.css" th:href="@{/allusers.css}" rel="stylesheet"/>
+<link href="../static/all-users.css" th:href="@{/all-users.css}" rel="stylesheet"/>
 
 
 <head>
@@ -64,7 +64,7 @@
                 var id = 0;
                 var roles = [];
                 for (var i = 0; i < $('#addroles').val().length; i++) {
-                    if ($('#addroles').val()[i] === "ROLE_USER") {
+                    if ($('#addroles').val()[i] == "ROLE_USER") {
                         id = 1;
                     } else {
                         id = 2;
@@ -142,6 +142,7 @@
                         data: JSON.stringify(user),
                         success: function (res) {
                             update();
+                            $('#delete').modal('hide');
                             $('#closedelete').click();
                         },
                         error: function (e) {
@@ -170,7 +171,7 @@
                     var id = 0;
                     var roles = [];
                     for (var i = 0; i < $('#editroles').val().length; i++) {
-                        if ($('#editroles').val()[i] === "ROLE_ADMIN") {
+                        if ($('#editroles').val()[i] == "ROLE_ADMIN") {
                             id = 1;
                         } else {
                             id = 2;
@@ -194,6 +195,7 @@
                         data: JSON.stringify(user),
                         success: function (res) {
                             update();
+                            $('#edit').modal('hide');
                             $('#close').click();
                         },
                         error: function (e) {

@@ -1,16 +1,11 @@
-package com.PreProj.PP_3_1_2.DAO;
+package com.PreProj.PP_3_1_2.dao;
 
 
+import com.PreProj.PP_3_1_2.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import com.PreProj.PP_3_1_2.models.User;
-
-import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
     User findByUsername(String username);
-
 }

@@ -1,4 +1,5 @@
-package com.PreProj.PP_3_1_2.models;
+package com.PreProj.PP_3_1_2.model;
+
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -7,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "role")
-public class Role  implements GrantedAuthority {
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,11 +21,6 @@ public class Role  implements GrantedAuthority {
 
     public Role(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return this.name.contains("ADMIN") ? "ADMIN" : "USER";
     }
 
     public Long getId() {
@@ -55,4 +51,11 @@ public class Role  implements GrantedAuthority {
     public String getAuthority() {
         return getName();
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
+
+
 }

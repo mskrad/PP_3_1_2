@@ -1,4 +1,4 @@
-package com.PreProj.PP_3_1_2.models;
+package com.PreProj.PP_3_1_2.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,26 +8,23 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name="user")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(name = "username")
     private String username;
-
-    @Column(name = "first_name")
     private String firstname;
-    @Column(name = "last_name")
+
     private String lastname;
-    @Column(name = "email")
     private String email;
-    @Column(name = "password")
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    public User(String username, String firstname, String lastname, String email, String password, Set<Role> roles) {
+    public User(long id, String username, String firstname, String lastname, String email, String password, Set<Role> roles) {
+        this.id = id;
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -38,20 +35,17 @@ public class User implements UserDetails {
 
     public User() { }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
     public String getLastname() {
         return lastname;
     }
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getEmail() {
+
+        return email;
     }
 
     public long getId() {
@@ -62,6 +56,7 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -90,10 +85,6 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -115,11 +106,27 @@ public class User implements UserDetails {
         return roles;
     }
 
-    public String getStringRoles() {
-        return roles.toString().replace("[", "").replace("]", "");
-    }
-
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 }
